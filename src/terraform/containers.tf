@@ -7,6 +7,11 @@ resource "docker_container" "nginx" {
       external = 80
   }
 
+  ports {
+      internal = 443
+      external = 443
+  }
+
   volumes {
     host_path = "/home/june/certs"
     container_path = "/etc/nginx/certs"
