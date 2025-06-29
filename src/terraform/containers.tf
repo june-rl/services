@@ -131,6 +131,7 @@ resource "docker_container" "paperless_pg" {
 
   volumes {
     volume_name = docker_volume.paperless_pg_data.id
+    container_path = "/var/lib/postgresql/data"
   }
 
 }
@@ -141,6 +142,7 @@ resource "docker_container" "paperless_redis" {
 
   volumes {
     volume_name = docker_volume.paperless_redis_data.id
+    container_path = "/data"
   }
 
   networks_advanced {
