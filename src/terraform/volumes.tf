@@ -3,9 +3,9 @@ resource "docker_volume" "memos_pg_data" {
 }
 
 resource "docker_volume" "paperless_pg_data" {
-  name = "paperless_pgdata"
+  name = "paperless_pg_data"
 }
 
 resource "docker_volume" "paperless_redis_data" {
-  name = "paperless_redisdata"
+  name = "paperless_redis_data"
 }
