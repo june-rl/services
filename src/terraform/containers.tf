@@ -98,7 +98,7 @@ resource "docker_container" "paperless" {
     "USERMAP_UID=1000",
     "USERMAP_GID=1000",
     "PAPERLESS_URL=https://paperless.june.pet",
-    "PAPERLESS_SECRET_KEY=${var.paperless_secret_key}}",
+    "PAPERLESS_SECRET_KEY=${var.paperless_secret_key}",
     "PAPERLESS_TIME_ZONE=Europe/London",
     "PAPERLESS_OCR_LANGUAGE=eng",
     "PAPERLESS_REDIS=redis://paperless_redis:6379",
