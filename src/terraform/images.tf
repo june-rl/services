@@ -21,6 +21,10 @@ resource "docker_image" "nginx" {
   }
 }
 
+resource "docker_image" "stirlingpdf" {
+  name = "docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest"
+}
+
 resource "docker_image" "memos" {
   name = "neosmemo/memos:stable"
 }

@@ -19,6 +19,16 @@ resource "docker_container" "nginx" {
 
 }
 
+resource "docker_container" "stirlingpdf" {
+  image = docker_image.stirlingpdf.image_id
+  name = "spdf"
+
+  networks_advanced {
+    name = docker_network.nginx.id
+  }
+
+}
+
 resource "docker_container" "memos" {
   image = docker_image.memos.image_id
   name  = "memos"
