@@ -10,7 +10,6 @@ resource "docker_container" "nginx" {
   volumes {
     host_path = "~/certs"
     container_path = "/etc/nginx/certs"
-    mode = "ro"
   }
 
   networks_advanced {
