@@ -8,7 +8,7 @@ resource "docker_container" "nginx" {
   }
 
   volumes {
-    host_path = "~/certs"
+    host_path = "/home/june/certs"
     container_path = "/etc/nginx/certs"
   }
 
