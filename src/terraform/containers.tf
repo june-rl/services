@@ -16,9 +16,15 @@ resource "docker_container" "nginx" {
     name = docker_network.nginx.id
   }
 
+  depends_on = [
+    docker_container.memos,
+    docker_container.paperless,
+    docker_container.stirling-pdf
+  ]
+
 }
 
-resource "docker_container" "stirlingpdf" {
+resource "docker_container" "stirling-pdf" {
   image = docker_image.stirlingpdf.image_id
   name = "spdf"
 
