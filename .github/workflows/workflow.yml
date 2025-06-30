@@ -1,0 +1,20 @@
+name: workflow.yml
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}  # Ensure SERVER_IP is set in GitHub Secrets
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir ~/.ssh
+          echo "$PRIVATE_KEY" > ./private.key
+          sudo chmod 600 ./private.key
+          ssh -i ./private.key june@$SERVER_IP "cd ~/services/src/terraform && git pull && terraform apply"
+        shell: bash
