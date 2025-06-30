@@ -105,6 +105,26 @@ resource "docker_container" "paperless" {
     "PAPERLESS_DBHOST=paperless_db"
   ]
 
+  volumes {
+    host_path = "/media/remote/paperless/data"
+    container_path = "/usr/src/paperless/data"
+  }
+
+  volumes {
+    host_path = "/media/remote/paperless/media"
+    container_path = "/usr/src/paperless/media"
+  }
+
+  volumes {
+    host_path = "/media/remote/paperless/export"
+    container_path = "/usr/src/paperless/export"
+  }
+
+  volumes {
+    host_path = "/media/remote/paperless/consume"
+    container_path = "/usr/src/paperless/consume"
+  }
+
   networks_advanced {
     name = docker_network.paperless.id
   }
