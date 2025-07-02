@@ -1,8 +1,14 @@
-name: workflow.yml
-on: [push]
+name: apply.yml
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'main'
 
 jobs:
   apply:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Apply update
