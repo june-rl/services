@@ -2,6 +2,7 @@ name: plan.yml
 on:
   push:
     branches:
+      - '**'
       - '!main'
 
 jobs:
