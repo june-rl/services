@@ -1,0 +1,23 @@
+name: apply.yml
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'main'
+
+jobs:
+  apply:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply update
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}  # Ensure SERVER_IP is set in GitHub Secrets
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir ~/.ssh
+          echo "$PRIVATE_KEY" > ./private.key
+          sudo chmod 600 ./private.key
+          ssh -o "StrictHostKeyChecking no" -i ./private.key june@$SERVER_IP "cd ~/services/src/terraform && git pull && terraform apply -var-file=secret.tfvars -input=false -auto-approve"
+        shell: bash
